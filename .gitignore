@@ -1,0 +1,14 @@
+\input_folder
+\models
+\output_folders
+\resolution_fullhd
+\thesis_app_env
+\src\data
+\src\input_folder
+\src\output_folder
+\src\output
+\src\resolution_fullhd
+*.geojson
+*.png
+*.jpg
+*.tif
