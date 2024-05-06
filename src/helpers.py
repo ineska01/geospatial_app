@@ -33,12 +33,12 @@ def tif_to_png_without_save(tif_data):
 
 
 def change_resolution_fullhd(input_directory, output_directory):
-    input_directory = r"C:\Users\user\Desktop\frontend\output_folder"
+    input_directory = r"src\output_folder"
 
     new_width = 1920
     new_height = 1080
 
-    output_directory = r"C:\Users\user\Desktop\frontend\resolution_fullhd"
+    output_directory = r"resolution_fullhd"
 
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
@@ -159,8 +159,8 @@ def clear_after_user():
 
 
 if __name__ == "__main__":
-    input_folder = r"C:\Users\user\Desktop\frontend\input_folder"
-    output_folder = r"C:\Users\user\Desktop\frontend\output_folder"
+    input_folder = r"src\input_folder"
+    output_folder = r"src\output_folder"
 
     tif_to_png_with_save(input_folder, output_folder)
     detect_to_geojson(

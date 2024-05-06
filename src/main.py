@@ -136,10 +136,10 @@ def detect_to_geojson(raster_path: str, labels_txt: str, save_dir: str):
 
 def clear_after_user():
     shutil.rmtree("runs")
-    shutil.rmtree(r"C:\Users\Ineska\Desktop\frontend\src\data")
-    shutil.rmtree(r"C:\Users\Ineska\Desktop\frontend\src\output")
-    os.makedirs(r"C:\Users\Ineska\Desktop\frontend\src\data")
-    os.makedirs(r"C:\Users\Ineska\Desktop\frontend\src\output")
+    shutil.rmtree(r"src\data")
+    shutil.rmtree(r"src\output")
+    os.makedirs(r"src\data")
+    os.makedirs(r"src\output")
 
 
 def main():
@@ -219,7 +219,7 @@ def main():
             time.sleep(6)
             save.empty()
 
-            model = YOLO(r"C:\Users\Ineska\Desktop\frontend\models\best_300_3class.pt")
+            model = YOLO(r"models\best_300_3class.pt")
 
             detection_results = detect_objects(saved_path, model, classes_list)
 
@@ -231,11 +231,11 @@ def main():
 
             runs_folder_path = os.path.join(os.path.dirname(__file__), "runs")
             display_detection_images(runs_folder_path)
-            raster_path = r"C:\Users\Ineska\Desktop\frontend\src\data\res.tif"
+            raster_path = r"src\data\res.tif"
             labels_txt = (
-                r"C:\Users\Ineska\Desktop\frontend\runs\segment\predict\labels\res.txt"
+                r"runs\segment\predict\labels\res.txt"
             )
-            save_dir = r"C:\Users\Ineska\Desktop\frontend\src\output\res.geojson"
+            save_dir = r"src\output\res.geojson"
             print(save_dir)
             try:
                 detect_to_geojson(raster_path, labels_txt, save_dir)
@@ -245,7 +245,7 @@ def main():
                     unsafe_allow_html=True,
                 )
 
-            file_path = r"C:\Users\Ineska\Desktop\frontend\src\output\res.geojson"
+            file_path = r"src\output\res.geojson"
             framed_text_code = """
                     <div style="border: 2px solid #878787; padding: 3px; margin-bottom: 15px;">
                         <h1 style='text-align: center; font-size: 25px;'>Kliknij w przycisk poniżej, aby pobrać zaznaczone obiekty</h1>
