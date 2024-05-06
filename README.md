@@ -11,3 +11,4 @@ Each satellite image was labeled with objects of three selected classes (buildin
 A web service was created to easily and affordably perform real-time segmentation of the objects of the three classes in the satellite images.
 The application works very well, and the results of the model segmentation can be downloaded as a GeoJSON file.
 
+<img src="thesis_photo.png"> 
