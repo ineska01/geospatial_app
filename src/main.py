@@ -201,7 +201,7 @@ def main():
             my_bar = st.progress(0, text=progress_text)
             output_folder = os.path.join(os.path.dirname(__file__), "data")
             saved_path = tif_to_png_with_save(data_folder_path, output_folder)
-            png_data = r"C:\Users\Ineska\Desktop\frontend\src\data\res.png"
+            png_data = r"src\data\res.png"
             st.image(
                 Image.open(png_data),
                 caption="Wgrana ortofotomapa",
