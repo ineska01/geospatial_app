@@ -7,6 +7,7 @@ from ultralytics import YOLO
 import shutil
 import rasterio
 import json
+import stat
 
 
 def save_tif_to_local_folder(tif_data, folder_path, original_file_name):
@@ -14,9 +15,11 @@ def save_tif_to_local_folder(tif_data, folder_path, original_file_name):
     file_name = f"res.tif"
     file_path = os.path.join(folder_path, file_name)
 
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
     with open(file_path, "wb") as f:
         f.write(tif_data)
-        f.seek(0)
 
     return file_path
 
@@ -136,10 +139,10 @@ def detect_to_geojson(raster_path: str, labels_txt: str, save_dir: str):
 
 def clear_after_user():
     shutil.rmtree("runs")
-    shutil.rmtree(r"src\data")
-    shutil.rmtree(r"src\output")
-    os.makedirs(r"src\data")
-    os.makedirs(r"src\output")
+    shutil.rmtree(r"data")
+    shutil.rmtree(r"output")
+    os.makedirs(r"data")
+    os.makedirs(r"output")
 
 
 def main():
@@ -200,8 +203,10 @@ def main():
             progress_text = "Operacja w toku. Proszę zaczekać."
             my_bar = st.progress(0, text=progress_text)
             output_folder = os.path.join(os.path.dirname(__file__), "data")
+            if not os.path.exists(output_folder):
+                os.makedirs(output_folder)
             saved_path = tif_to_png_with_save(data_folder_path, output_folder)
-            png_data = r"src\data\res.png"
+            png_data = r"data\res.png"
             st.image(
                 Image.open(png_data),
                 caption="Wgrana ortofotomapa",
@@ -231,21 +236,23 @@ def main():
 
             runs_folder_path = os.path.join(os.path.dirname(__file__), "runs")
             display_detection_images(runs_folder_path)
-            raster_path = r"src\data\res.tif"
-            labels_txt = (
-                r"runs\segment\predict\labels\res.txt"
-            )
-            save_dir = r"src\output\res.geojson"
+            raster_path = r"data\res.tif"
+            labels_txt = r"runs\segment\predict\labels\res.txt"
+            save_dir = r"output\res.geojson"
+            if not os.path.exists("output"):
+                os.makedirs("output")
             print(save_dir)
             try:
                 detect_to_geojson(raster_path, labels_txt, save_dir)
-            except:
+            except Exception as e:
                 st.markdown(
                     "<h1 style='text-align: center; font-size: 25px;'>Nie udało się przeprowadzić segmentacji</h1>",
                     unsafe_allow_html=True,
                 )
+                print("detect to geojson fail:", e)
 
-            file_path = r"src\output\res.geojson"
+            file_path = r"output\res.geojson"
+
             framed_text_code = """
                     <div style="border: 2px solid #878787; padding: 3px; margin-bottom: 15px;">
                         <h1 style='text-align: center; font-size: 25px;'>Kliknij w przycisk poniżej, aby pobrać zaznaczone obiekty</h1>
