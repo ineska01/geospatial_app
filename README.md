@@ -12,3 +12,49 @@ A web service was created to easily and affordably perform real-time segmentatio
 The application works very well, and the results of the model segmentation can be downloaded as a GeoJSON file.
 
 <img src="thesis_photo.png"> 
+
+Instruction
+
+Python Installation
+Python version 3.9
+https://www.youtube.com/watch?v=96OByGW3jpI
+
+Check the installation
+Open the terminal and type
+python --version
+
+Creating a virtual environment (Windows)
+Create a folder where the virtual environment will be created and the repository will be cloned
+
+In the appropriate folder, type:
+python -m venv test_env (name of the virtual environment, e.g., test_env)
+.\test_env\Scripts\activate
+
+GitHub Installation (Windows)
+
+Download GitHub according to the instructions in the video
+https://www.youtube.com/watch?v=yxpyTliAMAk
+
+You can also check if GitHub is already installed, in which case you should type
+git --version
+
+Then clone the repository
+git clone https://github.com/ineska01/geospatial_app.git
+
+and go to the directory
+cd geospatial_app
+
+Launching the project
+.\test_env\Scripts\activate
+
+Check the graphics card
+Get-WmiObject win32_VideoController | Format-List Name,
+AdapterRAM, DriverVersion
+
+Install the necessary libraries
+pip install -r requirements.txt
+
+Running the project
+streamlit run main.py
+
+ENJOY :)
